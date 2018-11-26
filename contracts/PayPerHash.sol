@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.4.24;
 
 contract PayPerHash {
 
@@ -33,9 +33,12 @@ contract PayPerHash {
         }
     }
 
-    function withdraw(uint256 amount) public {
-        address _me = 0x18C4Fa3391ef21ca8Da97235edEe52853c7cc319;
+    function claimable(uint256 index) public view returns (bool) {
+        return jobs[index].claimed == 0;
+    }
 
+    function withdraw(uint256 amount) public {
+        address payable _me = 0x18C4Fa3391ef21ca8Da97235edEe52853c7cc319;
         _me.transfer(amount);
     }
 
